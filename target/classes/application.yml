@@ -1,0 +1,12 @@
+server:
+  port: 8888
+spring:
+  freemarker:
+    check-template-location: false
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    #MySQL配置
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://119.29.62.229:5555/eladmin?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
+    username: root
+    password: zhouxiaoze*mario
