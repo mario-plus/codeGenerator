@@ -1,5 +1,6 @@
 package mario.generator.utils;
 
+import cn.hutool.core.io.resource.ClassPathResource;
 import cn.hutool.extra.template.*;
 import cn.hutool.json.JSONArray;
 import cn.hutool.json.JSONUtil;
@@ -34,10 +35,11 @@ public class GenUtil {
     private static List<String> getAdminTemplateNames() {
         List<String> templateNames = new ArrayList<>();
         templateNames.add("Entity");
-        //templateNames.add("Controller");
-        /*templateNames.add("Dto");
         templateNames.add("Mapper");
-
+        templateNames.add("Controller");
+        //templateNames.add("Mapper.xml");
+        //
+        /*templateNames.add("Dto");
         templateNames.add("QueryCriteria");
         templateNames.add("Service");
         templateNames.add("ServiceImpl");
@@ -54,6 +56,16 @@ public class GenUtil {
         if ("Entity".equals(templateName)) {
             return filePath + File.separator  + "domain" + File.separator + className + ".java";
         }
+        if ("Mapper".equals(templateName)){
+            return filePath + File.separator  + "mapper" + File.separator + className + "Mapper.java";
+        }
+        if ("Controller".equals(templateName)){
+            return filePath + File.separator  + "controller" + File.separator + className + "Controller.java";
+        }
+        /*if ("Mapper.xml".equals(templateName)){
+            System.out.println("/resources/mybatis/mapper/"  + className + "Mapper.xml");
+            return "";
+        }*/
         return null;
     }
 
@@ -71,8 +83,9 @@ public class GenUtil {
         genMap.put("date", LocalDate.now().toString());
         // 大写开头的类名
         String className = StringUtils.toCapitalizeCamelCase(tableName);
+        String changeClassName = StringUtils.toCamelCase(tableName);
         genMap.put("className", className);
-
+        genMap.put("changeClassName",changeClassName);
         List<ColumeInfo> columeInfos = query(tableName);
         columeInfos.forEach(columeInfo -> {
             Map<String,Object> listMap = new HashMap<>(16);
@@ -146,5 +159,9 @@ public class GenUtil {
             assert writer != null;
             writer.close();
         }
+    }
+
+    public static void main(String[] args) {
+
     }
 }

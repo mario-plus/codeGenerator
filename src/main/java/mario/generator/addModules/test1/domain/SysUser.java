@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 /**
 * @author zxz
-* @date 2020-11-18
+* @date 2020-11-19
 */
 @Data
 public class SysUser implements Serializable {
